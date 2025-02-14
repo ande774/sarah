@@ -66,7 +66,7 @@
 </head>
 <body>
     <img src="https://img.freepik.com/vector-premium/dibujos-animados-forma-corazon-lindo-ilustracion-plana-icono-forma-corazon-sobre-fondo-rosa_401949-450.jpg" alt="Uncorazon" width="150" height="100">
-    <h1>Sarah Cibien, ¿Quieres ser mi San Valentín?</h1>
+    <h1 id="questionText">Sarah Cibien, ¿Quieres ser mi San Valentín?</h1>
     <button class="btn" id="yesBtn">Sí</button>
     <button class="btn" id="noBtn">No</button>
 
@@ -89,10 +89,12 @@
                 // Cambiar el tamaño del botón "Sí" cada vez que se hace clic
                 yesClickCount++;
                 document.getElementById("yesBtn").style.fontSize = (18 + yesClickCount * 5) + "px"; // Duplicar tamaño solo en Sí
-               // Cambiar el texto de la pregunta después del primer clic en "Sí"
+
+                // Cambiar el texto de la pregunta después del primer clic en "Sí"
                 if (yesClickCount === 1) {
                     document.getElementById("questionText").textContent = "Ya lo sabia 😎, te quiero"; // Cambiar la oración
                 }
+
                 if (yesClickCount === 0) {
                     gifElement.src = "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExc3I4enR4aWE0NXV6NXEwcmY4bTk4ZzMwaHFjM3Q1cGJuaGh0ZGZ0aiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/4N1wOi78ZGzSB6H7vK/giphy.gif"; // Primer gif para "Sí"
                 } else if (yesClickCount === 1) {
