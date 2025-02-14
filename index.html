@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>No abras si no eres Sarah</title>
+    <style>
+        /* Estilo del fondo de la página */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9a2d8; /* Color rosado para el fondo */
+            text-align: center;
+            margin-top: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Estilo para la pregunta con celeste intenso */
+        h1 {
+            color: #0e76ff; /* Celeste intenso para la pregunta */
+            font-size: 40px;
+        }
+
+        /* Estilo de los botones */
+        .btn {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            margin: 10px;
+            border-radius: 5px;
+            border: 2px solid #ff4c4c;
+            background-color: #ffcccc;
+            transition: background-color 0.3s;
+        }
+
+        /* Efecto hover en los botones */
+        .btn:hover {
+            background-color: #ff6666;
+        }
+
+        /* Estilo del contenedor de los GIFs */
+        .gif-container {
+            margin-top: 30px;
+        }
+
+        /* Estilo para los corazones cayendo */
+        .corazon {
+            position: absolute;
+            top: -50px; /* Comienza fuera de la pantalla */
+            font-size: 30px;
+            color: red;
+            animation: caer 5s infinite;
+            pointer-events: none;
+        }
+
+        /* Animación de caída de corazones */
+        @keyframes caer {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(100vh); /* Caer hasta el fondo de la pantalla */
+            }
+        }
+    </style>
+</head>
+<body>
+    <img src="https://img.freepik.com/vector-premium/dibujos-animados-forma-corazon-lindo-ilustracion-plana-icono-forma-corazon-sobre-fondo-rosa_401949-450.jpg" alt="Uncorazon" width="150" height="100">
+    <h1>Sarah Cibien, ¿Quieres ser mi San Valentín?</h1>
+    <button class="btn" id="yesBtn">Sí</button>
+    <button class="btn" id="noBtn">No</button>
+
+    <div class="gif-container" id="gifContainer">
+        <!-- Los GIFs se agregarán aquí con JavaScript -->
+    </div>
+
+    <script>
+        let yesClickCount = 0;  // Contador de clics en "Sí"
+        let noClickCount = 0;   // Contador de clics en "No"
+
+        // Función para mostrar el GIF dependiendo de la elección
+        function showGif(option) {
+            const gifContainer = document.getElementById("gifContainer");
+            gifContainer.innerHTML = ""; // Limpiar cualquier GIF anterior
+
+            let gifElement = document.createElement("img");
+
+            if (option === "yes") {
+                // Cambiar el tamaño del botón "Sí" cada vez que se hace clic
+                yesClickCount++;
+                document.getElementById("yesBtn").style.fontSize = (18 + yesClickCount * 5) + "px"; // Duplicar tamaño solo en Sí
+               // Cambiar el texto de la pregunta después del primer clic en "Sí"
+                if (yesClickCount === 1) {
+                    document.getElementById("questionText").textContent = "Ya lo sabia 😎, te quiero"; // Cambiar la oración
+                }
+                if (yesClickCount === 0) {
+                    gifElement.src = "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExc3I4enR4aWE0NXV6NXEwcmY4bTk4ZzMwaHFjM3Q1cGJuaGh0ZGZ0aiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/4N1wOi78ZGzSB6H7vK/giphy.gif"; // Primer gif para "Sí"
+                } else if (yesClickCount === 1) {
+                    gifElement.src = "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExc3I4enR4aWE0NXV6NXEwcmY4bTk4ZzMwaHFjM3Q1cGJuaGh0ZGZ0aiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/4N1wOi78ZGzSB6H7vK/giphy.gif"; // Segundo gif para "Sí"
+                } else if (yesClickCount === 2) {
+                    gifElement.src = "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExeHVsenUyemU3cWJiOHUydHl0djRjeHNkNXBydGVnOGlrNGg4bW04NiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/dc9bu6GABNbG0fg3kq/giphy.gif"; // Tercer gif para "Sí"
+                } else if (yesClickCount === 3) {
+                    gifElement.src = "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExcTdtOHhoOXRkNWltcDR5NWhpanFtMG5mamp6OWJ1enl0MWc5enJ6NiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/UgV8Y7bDxsZDCP01eo/giphy.gif"; // Cuarto gif para "Sí"
+                } else if (yesClickCount === 4) {
+                    gifElement.src = "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExam5lMmtyYnhwYnQya3JpNzZ1bHNtd3pzN2QyZXc0YWtiMDA1cmNteiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/XHB11hELSnboTanIaM/giphy.gif"; // quinto gif para "Sí"
+                }
+            } else if (option === "no") {
+                // Cambiar el texto del botón "No" dependiendo del número de clics
+                if (noClickCount === 0) {
+                    document.getElementById("noBtn").textContent = "Piénsalo nuevamente";
+                } else if (noClickCount === 1) {
+                    document.getElementById("noBtn").textContent = "Ándale no seas mala";
+                } else if (noClickCount === 2) {
+                    document.getElementById("noBtn").textContent = "No tengas miedo al éxito";
+                } else if (noClickCount === 3) {
+                    document.getElementById("noBtn").textContent = "Sarah ya!";
+                }
+
+                // Aumentar el tamaño del botón "Sí" en cada clic en "No"
+                yesClickCount++; // Incrementar el contador cada vez que "No" se haga clic
+                let yesBtn = document.getElementById("yesBtn");
+                let currentFontSize = parseInt(window.getComputedStyle(yesBtn).fontSize); // Obtener el tamaño actual en px
+                let newFontSize = currentFontSize + 5; // Aumentar el tamaño de manera incremental
+
+                yesBtn.style.fontSize = newFontSize + "px"; // Asignar el nuevo tamaño
+
+                noClickCount++; // Aumentar el contador de "No"
+                if (noClickCount > 3) noClickCount = 3; // No dejar que el contador suba más allá de 3
+
+                // Mostrar GIFs al hacer clic en "No"
+                if (noClickCount === 1) {
+                    gifElement.src = "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExYmZtMTBkMml6MjQ2ODFuczB5bzB4NGtrMWV1bmp1cjJseGtvcmllciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7527pa7qs9kCG78A/giphy.gif"; // Primer gif para "No"
+                } else if (noClickCount === 2) {
+                    gifElement.src = "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExODZobDV5Njd5a3NxaWZoMXZpM29tMzVlaThvOXA4bmQzZG51bDJ3YSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/gKHGnB1ml0moQdjhEJ/giphy.gif"; // Segundo gif para "No"
+                } else if (noClickCount === 3) {
+                    gifElement.src = "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExaDFrN2RxMW0xdXNueXMyemh6eWIwcTB3cWY0eXNvM3prbjk1dHhyeSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/7SF5scGB2AFrgsXP63/giphy.gif"; // Tercer gif para "No"
+                }
+            }
+
+            gifElement.alt = "gif de San Valentín";
+            gifContainer.appendChild(gifElement);
+        }
+
+        // Función para crear corazones cayendo
+        function crearCorazon() {
+            const corazon = document.createElement("div");
+            corazon.classList.add("corazon");
+            corazon.textContent = "❤️";
+            corazon.style.left = Math.random() * window.innerWidth + "px";
+            document.body.appendChild(corazon);
+
+            // Eliminar el corazón después de que caiga
+            setTimeout(() => {
+                corazon.remove();
+            }, 5000); // 5 segundos antes de eliminarlo
+        }
+
+        // Crear corazones cada 300ms
+        setInterval(crearCorazon, 300);
+
+        // Eventos para los botones
+        document.getElementById("yesBtn").addEventListener("click", function() {
+            showGif("yes");
+        });
+
+        document.getElementById("noBtn").addEventListener("click", function() {
+            showGif("no");
+        });
+    </script>
+</body>
+</html>
